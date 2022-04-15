@@ -1,20 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-//@ts-ignore
-import Stock from './components/Stock.tsx';
+import Stock from './components/Stock';
 //@ts-ignore
 import warehouse from './assets/warehouse.jpg';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.base}>
-        <Text style={{color: '#33c', fontSize: 42}}>Lager-Appen</Text>
+      <ScrollView style={styles.base}>
+        <Text style={styles.h1}>Lager-Appen</Text>
         <Image source={warehouse} style={{ width: 320, height: 240 }} />
-        <Stock />
+        <Stock styles={styles}/>
         <StatusBar style="auto" />
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -25,8 +24,26 @@ const styles = StyleSheet.create({
   },
   base: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingLeft: 12,
-    paddingRight: 12,
+    backgroundColor: '#FFF0D1',
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
+  h1: {
+    color: '#4D6694',
+    fontSize: 50,
+    paddingTop: 15,
+    paddingBottom: 15,
+    fontWeight: 'bold'
+  },
+  h2: {
+    color: '#4D6694',
+    fontSize: 30,
+    paddingTop: 25,
+    paddingBottom: 15
+  },
+  bulletpoint: {
+    fontSize: 20,
+    paddingBottom: 10,
+    marginLeft: 15
   }
 });

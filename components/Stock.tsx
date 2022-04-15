@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { ProgressViewIOSComponent, Text, View } from 'react-native';
 //@ts-ignore
 import config from "../config/config.json";
 
-function StockList() {
+function StockList(props: any) {
     const [products, setProducts] = useState<any[]>([]);
   
     useEffect(() => {
@@ -12,7 +12,7 @@ function StockList() {
         .then(result => setProducts(result.data));
     }, []);
   
-    const list = products.map((product, index) => <Text key={index}>{ product.name } - { product.stock }</Text>);
+    const list = products.map((product, index) => <Text style={props.styles.bulletpoint}key={index}>{'\u2022'} { product.name } - { product.stock }</Text>);
   
     return (
       <View>
@@ -21,11 +21,11 @@ function StockList() {
     );
   }
 
-export default function Stock() {
+export default function Stock(props: any) {
   return (
     <View>
-      <Text style={{color: '#333', fontSize: 24}}>Lagerförteckning</Text>
-      <StockList/>
+      <Text style={props.styles.h2}>Lagerförteckning</Text>
+      <StockList styles={props.styles}/>
     </View>
   );
 }
