@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -11,6 +12,9 @@ import { Ionicons } from '@expo/vector-icons';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+
+  const [products, setProducts] = useState([]);
+
   return (
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
@@ -24,7 +28,9 @@ export default function App() {
           tabBarInactiveTintColor: 'gray',
         })}
         >
-          <Tab.Screen name="Lager" component={Home} />
+          <Tab.Screen name="Lager">
+            {() => <Home products={products} setProducts={setProducts} />}
+          </Tab.Screen>
           <Tab.Screen name="Plock" component={Pick} />
         </Tab.Navigator>
       </NavigationContainer>

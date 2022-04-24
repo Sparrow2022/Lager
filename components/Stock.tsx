@@ -1,31 +1,28 @@
-import { useState, useEffect } from 'react';
-import { ProgressViewIOSComponent, Text, View } from 'react-native';
-//@ts-ignore
-import config from "../config/config.json";
+import { useEffect } from 'react';
+import { Text, View } from 'react-native';
+import productModel from "../models/products";
 
-function StockList(props: any) {
-    const [products, setProducts] = useState<any[]>([]);
-  
-    useEffect(() => {
-      fetch(`${config.base_url}/products?api_key=${config.api_key}`)
-        .then(response => response.json())
-        .then(result => setProducts(result.data));
-    }, []);
-  
-    const list = products.map((product, index) => <Text style={props.styles.bulletpoint}key={index}>{'\u2022'} { product.name } - { product.stock }</Text>);
-  
-    return (
-      <View>
-        {list}
-      </View>
-    );
-  }
+function StockList({ products, setProducts }) {
+  useEffect(async () => {
+    setProducts(await productModel.getProducts());
+  }, []);
 
-export default function Stock(props: any) {
+  const list = products.map((product, index) => {
+    return <Text
+      key={index}
+      //style={{ ...Typography.normal }}
+    >
+      {product.name} - {product.stock}
+    </Text>
+  });
+
+  return list;
+}
+
+export default function Stock({ products, setProducts }) {
   return (
     <View>
-      <Text style={props.styles.h2}>Lagerförteckning</Text>
-      <StockList styles={props.styles}/>
+      <Text>Lagerförteckning</Text>
+      <StockList products={products} setProducts={setProducts}/>
     </View>
-  );
-}
+  )}

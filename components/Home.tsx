@@ -1,20 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, Text, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Stock from './Stock';
 //@ts-ignore
 import warehouse from '../assets/warehouse.jpg';
 
-export default function Home() {
+export default function Home({products, setProducts}) {
   return (
-    <SafeAreaView style={styles.container}>
       <ScrollView style={styles.base}>
-        <Text style={styles.h1}>Lager-Appen</Text>
-        <Image source={warehouse} style={{ width: 320, height: 240 }} />
-        <Stock styles={styles}/>
-        <StatusBar style="auto" />
+          <Text>Lager-Appen</Text>
+          <Image source={warehouse} style={{ width: 320, height: 240, marginBottom: 28 }} />
+          <Stock products={products} setProducts={setProducts} />
       </ScrollView>
-    </SafeAreaView>
   );
 }
 
