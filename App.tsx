@@ -1,49 +1,45 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, ScrollView } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Stock from './components/Stock';
-//@ts-ignore
-import warehouse from './assets/warehouse.jpg';
+import Home from "./components/Home";
+import Pick from "./components/Pick";
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
+
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.base}>
-        <Text style={styles.h1}>Lager-Appen</Text>
-        <Image source={warehouse} style={{ width: 320, height: 240 }} />
-        <Stock styles={styles}/>
-        <StatusBar style="auto" />
-      </ScrollView>
+      <NavigationContainer>
+        <Tab.Navigator screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName = routeIcons[route.name] || "alert";
+
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'blue',
+          tabBarInactiveTintColor: 'gray',
+        })}
+        >
+          <Tab.Screen name="Lager" component={Home} />
+          <Tab.Screen name="Plock" component={Pick} />
+        </Tab.Navigator>
+      </NavigationContainer>
+      <StatusBar style="auto" />
     </SafeAreaView>
   );
 }
+
+const routeIcons = {
+  "Lager": "home",
+  "Plock": "list",
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  base: {
-    flex: 1,
-    backgroundColor: '#FFF0D1',
-    paddingLeft: 15,
-    paddingRight: 15,
-  },
-  h1: {
-    color: '#4D6694',
-    fontSize: 50,
-    paddingTop: 15,
-    paddingBottom: 15,
-    fontWeight: 'bold'
-  },
-  h2: {
-    color: '#4D6694',
-    fontSize: 30,
-    paddingTop: 25,
-    paddingBottom: 15
-  },
-  bulletpoint: {
-    fontSize: 20,
-    paddingBottom: 10,
-    marginLeft: 15
-  }
 });
