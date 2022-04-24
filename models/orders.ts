@@ -1,4 +1,5 @@
 import config from "../config/config.json";
+import Order from "../interfaces/order"
 
 const orders = {
     getOrders: async function getOrders() {
@@ -7,7 +8,8 @@ const orders = {
 
         return result.data;
     },
-    pickOrder: async function pickOrder() {
+    pickOrder: async function pickOrder(order : Order) {
+        console.log(order);
         // TODO: Minska lagersaldo för de
         // orderrader som finns i ordern
 
