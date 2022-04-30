@@ -1,8 +1,9 @@
 // OrderList.tsx
 import { useState, useEffect } from 'react';
-import { View, Text, Button } from "react-native";
+import { StyleSheet, View, Text, Button } from "react-native";
 import config from "./../config/config.json";
 import orderModel from "../models/orders";
+import { Base, Typography } from '../styles';
 
 export default function OrderList({ route, navigation }) {
     const { reload } = route.params || false;
@@ -20,11 +21,11 @@ export default function OrderList({ route, navigation }) {
         reloadOrders();
     }, []);
 
-    useEffect(() => {
-        fetch(`${config.base_url}/orders?api_key=${config.api_key}`)
-            .then(response => response.json())
-            .then(result => setAllOrders(result.data));
-    }, []);
+    // useEffect(() => {
+    //     fetch(`${config.base_url}/orders?api_key=${config.api_key}`)
+    //         .then(response => response.json())
+    //         .then(result => setAllOrders(result.data));
+    // }, []);
 
     const listOfOrders = allOrders
         .filter(order => order.status === "Ny")
@@ -47,3 +48,8 @@ export default function OrderList({ route, navigation }) {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    base: Base.base,
+    header: Typography.header1,
+});

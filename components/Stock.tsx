@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import productModel from "../models/products";
+import { Base, Typography } from '../styles';
 
 function StockList({ products, setProducts }) {
     useEffect(async () => {
@@ -27,3 +28,8 @@ export default function Stock({ products, setProducts }) {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    base: Base.base,
+    header: Typography.header1,
+});

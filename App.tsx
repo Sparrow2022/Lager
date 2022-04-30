@@ -7,6 +7,7 @@ import Pick from "./components/Pick";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import { Base, Typography } from './styles';
 
 
 const Tab = createBottomTabNavigator();
@@ -29,9 +30,11 @@ export default function App() {
                 })}
                 >
                     <Tab.Screen name="Lager">
-                        {() => <Home products={products} setProducts={setProducts} />}
+                        {(screenProps) => <Home {...screenProps} products={products} setProducts={setProducts} />}
                     </Tab.Screen>
-                    <Tab.Screen name="Plock" component={Pick} />
+                    <Tab.Screen name="Plock">
+                        {(screenProps) => <Pick {...screenProps} products={products} setProducts={setProducts} />}
+                    </Tab.Screen>
                 </Tab.Navigator>
             </NavigationContainer>
             <StatusBar style="auto" />
