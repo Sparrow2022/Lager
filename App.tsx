@@ -25,7 +25,7 @@ export default function App() {
 
                         return <Ionicons name={iconName} size={size} color={color} />;
                     },
-                    tabBarActiveTintColor: 'blue',
+                    tabBarActiveTintColor: 'black',
                     tabBarInactiveTintColor: 'gray',
                 })}
                 >
@@ -48,7 +48,5 @@ const routeIcons = {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
+    container: Base.container
 });

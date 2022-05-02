@@ -7,8 +7,8 @@ import { Base, Typography } from '../styles';
 export default function Home({ products, setProducts }) {
     return (
         <ScrollView style={styles.base}>
-            <Text style={styles.header}>Lager-Appen</Text>
-            <Image source={warehouse} style={{ width: 320, height: 240 }} />
+            <Text style={styles.header1}>Lager-Appen</Text>
+            <Image source={warehouse} style={styles.img} />
             <Stock products={products} setProducts={setProducts} />
         </ScrollView>
     );
@@ -16,5 +16,6 @@ export default function Home({ products, setProducts }) {
 
 const styles = StyleSheet.create({
     base: Base.base,
-    header: Typography.header1,
+    header1: Typography.header1,
+    img: Base.img,
 });

@@ -36,7 +36,8 @@ export default function PickList({ route, navigation, setProducts }) {
         if (productsHash[item.product_id] < item.account) {
             allInStock = false;
         }
-        return <Text
+        return <Text 
+            style={styles.indented}
             key={index}
         >
             {item.name} - {item.amount} - {item.location}
@@ -44,17 +45,17 @@ export default function PickList({ route, navigation, setProducts }) {
     });
 
     return (
-        <View>
-            <Text>{order.name}</Text>
-            <Text>{order.address}</Text>
-            <Text>{order.zip} {order.city}</Text>
+        <View style={styles.base}>
+            <Text style={styles.normal}>{order.name}</Text>
+            <Text style={styles.normal}>{order.address}</Text>
+            <Text style={styles.normal}>{order.zip} {order.city}</Text>
 
-            <Text>Produkter:</Text>
+            <Text style={styles.bold}>Produkter:</Text>
 
             {orderItemsList}
 
             {allInStock
-                ? <Button title="Plocka order" onPress={pick} />
+                ? <Button color="black" title="Plocka order" onPress={pick} />
                 : <Text>Ordern går inte att packa, då varor saknas</Text>
             }
 
@@ -64,5 +65,8 @@ export default function PickList({ route, navigation, setProducts }) {
 
 const styles = StyleSheet.create({
     base: Base.base,
-    header: Typography.header1,
+    header3: Typography.header3,
+    normal: Typography.normal,
+    indented: Typography.indented,
+    bold: Typography.bold
 });

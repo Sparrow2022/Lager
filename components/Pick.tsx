@@ -19,6 +19,5 @@ export default function Pick(props) {
 }
 
 const styles = StyleSheet.create({
-    base: Base.base,
-    header: Typography.header1,
+
 });

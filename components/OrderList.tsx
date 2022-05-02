@@ -21,16 +21,11 @@ export default function OrderList({ route, navigation }) {
         reloadOrders();
     }, []);
 
-    // useEffect(() => {
-    //     fetch(`${config.base_url}/orders?api_key=${config.api_key}`)
-    //         .then(response => response.json())
-    //         .then(result => setAllOrders(result.data));
-    // }, []);
-
     const listOfOrders = allOrders
         .filter(order => order.status === "Ny")
         .map((order, index) => {
             return <Button
+                color="#000000"
                 title={order.name}
                 key={index}
                 onPress={() => {
@@ -43,13 +38,12 @@ export default function OrderList({ route, navigation }) {
 
     return (
         <View>
-            <Text>Ordrar redo att plockas</Text>
+            <Text style={styles.header3}>Ordrar redo att plockas</Text>
             {listOfOrders}
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    base: Base.base,
-    header: Typography.header1,
+    header3: Typography.header3
 });
