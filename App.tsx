@@ -2,13 +2,12 @@ import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Home from "./components/Home";
-import Pick from "./components/Pick";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { Base, Typography } from './styles';
-
+import Home from "./components/Home";
+import Pick from "./components/Pick";
 
 const Tab = createBottomTabNavigator();
 

@@ -9,7 +9,8 @@ function StockList({ products, setProducts }) {
     }, []);
 
     const list = products.map((product, index) => {
-        return <Text style={styles.normal }
+        return <Text 
+            style={styles.normal }
             key={index}
         >
             {product.name} - {product.stock}

@@ -1,7 +1,6 @@
 // OrderList.tsx
 import { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Button } from "react-native";
-import config from "./../config/config.json";
 import orderModel from "../models/orders";
 import { Base, Typography } from '../styles';
 

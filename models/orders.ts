@@ -6,12 +6,9 @@ const orders = {
     getOrders: async function getOrders(): Promise<Order[]> {
         const response = await fetch(`${config.base_url}/orders?api_key=${config.api_key}`);
         const result = await response.json();
-
         return result.data;
     },
     pickOrder: async function pickOrder(order) {
-        console.log("picking");
-        
         await Promise.all(order.order_items.map(async(order_item) => {
             let changedProduct = {
                 id: order_item.product_id, 
