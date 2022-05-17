@@ -24,6 +24,9 @@ export const bold = {
     fontWeight: 'bold'
 };
 
+export const label = {
+    fontSize: 20,
+}
 
 export const indented = {
     fontSize: 15,

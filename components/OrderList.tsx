@@ -2,11 +2,12 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Button } from "react-native";
 import orderModel from "../models/orders";
+import Order from "../interfaces/order"
 import { Base, Typography } from '../styles';
 
 export default function OrderList({ route, navigation }) {
     const { reload } = route.params || false;
-    const [allOrders, setAllOrders] = useState([]);
+    const [allOrders, setAllOrders] = useState<Order[]>([]);
 
     if (reload) {
         reloadOrders();
