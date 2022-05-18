@@ -4,4 +4,5 @@ export default interface Delivery {
     amount: number,
     delivery_date: string,
     comment: string,
+    api_key: string
 }

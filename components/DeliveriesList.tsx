@@ -27,9 +27,9 @@ export default function DeliveriesList({route, navigation}) {
                 title={delivery.product_name}
                 key={index}
                 onPress={() => {
-                    // navigation.navigate('Details', {
-                    //     order: order
-                    // });
+                    navigation.navigate('Details', {
+                        delivery: delivery
+                    });
                 }}
             />
         });

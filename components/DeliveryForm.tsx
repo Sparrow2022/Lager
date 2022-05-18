@@ -6,6 +6,7 @@ import { Base, Typography, Forms } from '../styles';
 import Delivery from "../interfaces/delivery";
 import Product from "../interfaces/product";
 import productModel from "../models/products";
+import deliveryModel from "../models/deliveries"
 
 function ProductDropDown(props) {
     const [products, setProducts] = useState<Product[]>([]);
@@ -73,9 +74,18 @@ export default function DeliveryForm({route, navigation}) {
     const[delivery, setDelivery] = useState<Partial<Delivery>>({})
     const [currentProduct, setCurrentProduct] = useState<Partial<Product>>({});
 
-    async function addDelivery() {
-        // skicka delivery till delivery modellen
-        // öka antalet produkter (use update product)
+    async function addDelivery(delivery : Partial<Delivery>) {
+        await deliveryModel.sendDelivery(delivery);
+
+        let productToChange = await (await productModel.getProducts()).find(p => p.id === delivery.product_id);
+
+        let changedProduct = {
+            id: delivery.product_id, 
+            stock: productToChange.stock + delivery.amount,
+        }; 
+
+        await productModel.updateProduct(changedProduct);
+        navigation.navigate("List", { reload: true });
     }
 
     return (
@@ -113,7 +123,7 @@ export default function DeliveryForm({route, navigation}) {
             <Button 
                 title="Gör inleverans"
                 onPress={() => {
-                    addDelivery();
+                    addDelivery(delivery);
                 }}
             />
         </ScrollView>
