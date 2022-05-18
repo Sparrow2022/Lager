@@ -1,5 +1,6 @@
 import config from "../config/config.json";
 import Order from "../interfaces/order"
+import OrderItem from "../interfaces/orderitem";
 import products from "./products";
 
 const orders = {
@@ -8,8 +9,8 @@ const orders = {
         const result = await response.json();
         return result.data;
     },
-    pickOrder: async function pickOrder(order) {
-        await Promise.all(order.order_items.map(async(order_item) => {
+    pickOrder: async function pickOrder(order : Order) {
+        await Promise.all(order.order_items.map(async(order_item : OrderItem) => {
             let changedProduct = {
                 id: order_item.product_id, 
                 name: order_item.name,
@@ -30,7 +31,7 @@ const orders = {
         await orders.updateOrder(changedOrder);
     },
 
-    updateOrder: async function updateOrder(order){
+    updateOrder: async function updateOrder(order : Order){
         try {
             order.api_key = config.api_key;
 
