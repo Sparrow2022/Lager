@@ -54,12 +54,15 @@ function DateDropDown(props) {
             {(show || Platform.OS === "ios") && (
                 <DateTimePicker
                     onChange={(event, date) => {
-                        setDropDownDate(date);
-
-                        props.setDelivery({
-                            ...props.delivery,
-                            delivery_date: date.toLocaleDateString('se-SV')
-                        });
+                        if (date !== undefined) {
+                            
+                            setDropDownDate(date);
+                            
+                            props.setDelivery({
+                                ...props.delivery,
+                                delivery_date: date.toLocaleDateString('se-SV')
+                            });
+                        }
                         setShow(false);
                     }}
                     value={dropDownDate}
