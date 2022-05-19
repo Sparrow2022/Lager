@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList } from 'react-native';
 import productModel from "../models/products";
 import { Base, Typography } from '../styles';
 
@@ -10,7 +10,7 @@ function StockList({ products, setProducts }) {
 
     const list = products.map((product, index) => {
         return <Text 
-            style={styles.normal }
+            style={Typography.normal }
             key={index}
         >
             {product.name} - {product.stock}
@@ -22,16 +22,9 @@ function StockList({ products, setProducts }) {
 
 export default function Stock({ products, setProducts }) {
     return (
-        <View style={styles.padding}>
-            <Text style={styles.header3}>Lagerförteckning</Text>
+        <View style={{marginBottom: 20}}>
+            <Text style={Typography.header3}>Lagerförteckning</Text>
             <StockList products={products} setProducts={setProducts} />
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    base: Base.base,
-    header3: Typography.header3,
-    normal: Typography.normal,
-    padding: Base.padding
-});

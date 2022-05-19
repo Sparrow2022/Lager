@@ -1,6 +1,7 @@
 import config from "../config/config.json";
 import Order from "../interfaces/order"
 import OrderItem from "../interfaces/orderitem";
+import Product from "../interfaces/product";
 import products from "./products";
 
 const orders = {
@@ -11,7 +12,7 @@ const orders = {
     },
     pickOrder: async function pickOrder(order : Order) {
         await Promise.all(order.order_items.map(async(order_item : OrderItem) => {
-            let changedProduct = {
+            let changedProduct : Partial<Product> = {
                 id: order_item.product_id, 
                 name: order_item.name,
                 stock: order_item.stock - order_item.amount,
@@ -21,7 +22,7 @@ const orders = {
             await products.updateProduct(changedProduct);
         }));
 
-        let changedOrder = {
+        let changedOrder : Partial<Order>= {
             id: order.id,
             name: order.name,
             status_id: 200,
@@ -31,7 +32,7 @@ const orders = {
         await orders.updateOrder(changedOrder);
     },
 
-    updateOrder: async function updateOrder(order : Order){
+    updateOrder: async function updateOrder(order : Partial<Order>){
         try {
             order.api_key = config.api_key;
 

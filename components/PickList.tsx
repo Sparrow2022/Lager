@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
+import { View, Text, Button } from "react-native";
+import ButtonCustom from "./ButtonCustom";
 import orderModel from "../models/orders";
 import productModel from "../models/products";
 import { Base, Typography } from '../styles';
@@ -37,7 +38,7 @@ export default function PickList({ route, navigation, setProducts }) {
             allInStock = false;
         }
         return <Text 
-            style={styles.indented}
+            style={Typography.indented}
             key={index}
         >
             {item.name} - {item.amount} - {item.location}
@@ -45,28 +46,19 @@ export default function PickList({ route, navigation, setProducts }) {
     });
 
     return (
-        <View style={styles.base}>
-            <Text style={styles.normal}>{order.name}</Text>
-            <Text style={styles.normal}>{order.address}</Text>
-            <Text style={styles.normal}>{order.zip} {order.city}</Text>
-
-            <Text style={styles.bold}>Produkter:</Text>
+        <View style={Base.base}>
+            <Text style={Typography.normal}>{order.name}</Text>
+            <Text style={Typography.normal}>{order.address}</Text>
+            <Text style={Typography.normal}>{order.zip} {order.city}</Text>
+            <Text style={Typography.bold}>Produkter:</Text>
 
             {orderItemsList}
 
             {allInStock
-                ? <Button color="black" title="Plocka order" onPress={pick} />
+                ? <ButtonCustom title="Plocka order" send={true} onPress={pick} />
                 : <Text>Ordern går inte att packa, då varor saknas</Text>
             }
 
         </View>
     )
 };
-
-const styles = StyleSheet.create({
-    base: Base.base,
-    header3: Typography.header3,
-    normal: Typography.normal,
-    indented: Typography.indented,
-    bold: Typography.bold
-});

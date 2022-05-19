@@ -1,6 +1,7 @@
 // OrderList.tsx
 import { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Button } from "react-native";
+import { View, Text, Button } from "react-native";
+import ButtonCustom from './ButtonCustom';
 import orderModel from "../models/orders";
 import Order from "../interfaces/order"
 import { Base, Typography } from '../styles';
@@ -24,26 +25,22 @@ export default function OrderList({ route, navigation }) {
     const listOfOrders = allOrders
         .filter(order => order.status === "Ny")
         .map((order, index) => {
-            return <Button
-                color="#000000"
+            return <ButtonCustom
                 title={order.name}
-                key={index}
+                key={order.id}
                 onPress={() => {
                     navigation.navigate('Details', {
                         order: order
                     });
                 }}
             />
+
         });
 
     return (
-        <View>
-            <Text style={styles.header3}>Ordrar redo att plockas</Text>
+        <View style={Base.base}>
+            <Text style={Typography.header3}>Ordrar redo att plockas</Text>
             {listOfOrders}
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    header3: Typography.header3
-});

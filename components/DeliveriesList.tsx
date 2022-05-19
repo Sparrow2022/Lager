@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, Button } from 'react-native';
 import { Base, Typography } from '../styles';
+import ButtonCustom from './ButtonCustom';
 import deliveryModel from "../models/deliveries";
 import Delivery from "../interfaces/delivery";
 
@@ -22,8 +23,7 @@ export default function DeliveriesList({route, navigation}) {
 
     const listOfDeliveries = allDeliveries
         .map((delivery, index) => {
-            return <Button
-                color="#000000"
+            return <ButtonCustom
                 title={delivery.product_name}
                 key={index}
                 onPress={() => {
@@ -38,8 +38,9 @@ export default function DeliveriesList({route, navigation}) {
         <View style={Base.base}>
             <Text style={Typography.header2}>Inleveranser</Text>
             {listOfDeliveries ? listOfDeliveries : <Text>Det finns inga leveranser att visa</Text>}
-            <Button
+            <ButtonCustom
                 title="Skapa ny inleverans"
+                send={true}
                 onPress={() => {
                     navigation.navigate('Form');
                 }}
@@ -47,10 +48,3 @@ export default function DeliveriesList({route, navigation}) {
         </View>
     );
 }
-
-// const styles = StyleSheet.create({
-//     base: Base.base,
-//     header3: Typography.header3,
-//     normal: Typography.normal,
-//     padding: Base.padding
-// });

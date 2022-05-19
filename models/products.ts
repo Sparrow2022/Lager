@@ -10,7 +10,7 @@ const products = {
         return result.data;
     },
 
-    updateProduct: async function updateProduct(product : Product){
+    updateProduct: async function updateProduct(product : Partial<Product>){
         try {
             product.api_key = config.api_key;
 

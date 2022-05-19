@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+    import { useState, useEffect } from "react";
 import { Platform, View, ScrollView, Text, TextInput, Button} from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-picker/picker';
 import { Base, Typography, Forms } from '../styles';
+import ButtonCustom from "./ButtonCustom";
 import Delivery from "../interfaces/delivery";
 import Product from "../interfaces/product";
 import productModel from "../models/products";
@@ -25,7 +26,7 @@ function ProductDropDown(props) {
 
     return (
         <Picker
-            selectedValue={props.delivery?.product_id}
+            selectedValue={props.delivery?.product_id || "Välj en produkt"}
             onValueChange={(itemValue) => {
                 props.setDelivery({ ...props.delivery, product_id: itemValue });
                 props.setCurrentProduct(productsHash[itemValue]);
@@ -46,9 +47,10 @@ function DateDropDown(props) {
     return (
         <View>
             {Platform.OS === "android" && (
-                <Button
+                <ButtonCustom
                     onPress={showDatePicker}
-                    title="Visa datumväljare"
+                    title={dropDownDate.toLocaleDateString('se-SV')}
+                    send={false}
                 />
             )}
             {(show || Platform.OS === "ios") && (
@@ -101,7 +103,6 @@ export default function DeliveryForm({route, navigation}) {
                 setCurrentProduct={setCurrentProduct}
             />
             <Text style={Typography.label}>Datum</Text>
-            <Text style={Typography.header3}>{delivery?.delivery_date}</Text>
             <DateDropDown
                 delivery={delivery}
                 setDelivery={setDelivery}/>
@@ -122,13 +123,15 @@ export default function DeliveryForm({route, navigation}) {
                 }}
                 value={delivery?.comment}
             />
-
-            <Button 
-                title="Gör inleverans"
-                onPress={() => {
-                    addDelivery(delivery);
-                }}
-            />
+            <View style={{marginTop: 30}}>
+                <ButtonCustom 
+                    title="Gör inleverans"
+                    send={true}
+                    onPress={() => {
+                        addDelivery(delivery);
+                    }}
+                />
+            </View>
         </ScrollView>
     );
 }

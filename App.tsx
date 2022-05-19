@@ -35,7 +35,7 @@ export default function App() {
                     <Tab.Screen name="Plock">
                         {(screenProps) => <Pick {...screenProps} products={products} setProducts={setProducts} />}
                     </Tab.Screen>
-                    <Tab.Screen name="Inveleranser">
+                    <Tab.Screen name="Inleveranser">
                         {(screenProps) => <Deliveries {...screenProps} />}
                     </Tab.Screen>
                 </Tab.Navigator>
@@ -48,7 +48,7 @@ export default function App() {
 const routeIcons = {
     "Lager": "home",
     "Plock": "list",
-    "Inleveranser": "airplane"
+    "Inleveranser": "car"
 };
 
 const styles = StyleSheet.create({

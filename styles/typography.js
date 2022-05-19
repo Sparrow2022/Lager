@@ -25,7 +25,9 @@ export const bold = {
 };
 
 export const label = {
-    fontSize: 20,
+    fontSize: 25,
+    marginTop: 15,
+    fontWeight: 'bold'
 }
 
 export const indented = {
@@ -33,3 +35,11 @@ export const indented = {
     marginBottom: 10,
     marginLeft: 30
 };
+
+export const buttonText = {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
+}

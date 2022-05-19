@@ -18,5 +18,25 @@ export const padding = {
 }
 
 export const button = {
-    marginBottom: 10
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    marginTop: 5,
+    marginBottom: 5,
+    backgroundColor: 'darkslategray'
+}
+
+export const buttonSend = {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    marginTop: 5,
+    marginBottom: 5,
+    backgroundColor: 'green'
 }
