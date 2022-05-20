@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,12 +9,23 @@ import { Base, Typography } from './styles';
 import Home from "./components/Home";
 import OrdersHome from "./components/OrdersHome";
 import DeliveriesHome from "./components/DeliveriesHome";
+import Invoices from './components/Invoices';
+import AuthHome from './components/AuthHome';
+import authModel from "./models/authorisation";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
 
     const [products, setProducts] = useState([]);
+
+    const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
+
+    useEffect(() => {
+        (async () => {
+            setIsLoggedIn(await authModel.loggedIn());
+        })();
+    }, []);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -38,6 +49,10 @@ export default function App() {
                     <Tab.Screen name="Inleveranser">
                         {(screenProps) => <DeliveriesHome {...screenProps} />}
                     </Tab.Screen>
+                    {isLoggedIn && <Tab.Screen name="Faktura" component={Invoices} />}
+                    <Tab.Screen name="Användare">
+                        {() => <AuthHome isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
+                    </Tab.Screen>
                 </Tab.Navigator>
             </NavigationContainer>
             <StatusBar style="auto" />
@@ -48,7 +63,9 @@ export default function App() {
 const routeIcons = {
     "Lager": "home",
     "Beställningar": "list",
-    "Inleveranser": "car"
+    "Inleveranser": "car",
+    "Användare": "person-outline",
+    "Faktura": "document-text-outline",
 };
 
 const styles = StyleSheet.create({

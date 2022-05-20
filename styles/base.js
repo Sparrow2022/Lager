@@ -7,8 +7,7 @@ export const base = {
 };
 
 export const img = {
-    width: 320,
-    height: 240,
+    width: "100%",
     marginTop: 10,
     marginBottom: 20
 }
