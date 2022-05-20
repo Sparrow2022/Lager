@@ -95,7 +95,6 @@ export default function DeliveryForm({route, navigation}) {
 
     return (
         <ScrollView style={{...Base.base}}>
-            <Text style={Typography.header2}>Ny leverans</Text>
             <Text style={Typography.label}>Produkt</Text>
             <ProductDropDown
                 delivery={delivery}

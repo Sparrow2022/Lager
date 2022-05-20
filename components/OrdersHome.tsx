@@ -8,8 +8,8 @@ const Stack = createNativeStackNavigator();
 
 export default function OrdersHome(props) {
     return (
-        <Stack.Navigator initialRouteName="Lista">
-            <Stack.Screen name="Lista" component={OrderList} />
+        <Stack.Navigator initialRouteName="Beställningar redo att plockas">
+            <Stack.Screen name="Beställningar redo att plockas" component={OrderList} />
             <Stack.Screen name="Detaljer">
                 {(screenProps) => <OrderDetails {...screenProps} setProducts={props.setProducts} />}
             </Stack.Screen>

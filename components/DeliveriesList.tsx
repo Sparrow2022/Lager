@@ -36,13 +36,12 @@ export default function DeliveriesList({route, navigation}) {
 
     return (
         <View style={Base.base}>
-            <Text style={Typography.header2}>Inleveranser</Text>
             {listOfDeliveries ? listOfDeliveries : <Text>Det finns inga leveranser att visa</Text>}
             <ButtonCustom
                 title="Skapa ny inleverans"
                 send={true}
                 onPress={() => {
-                    navigation.navigate('Formulär');
+                    navigation.navigate('Skapa ny leverans');
                 }}
             />
         </View>

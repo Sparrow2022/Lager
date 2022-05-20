@@ -39,7 +39,6 @@ export default function OrderList({ route, navigation }) {
 
     return (
         <View style={Base.base}>
-            <Text style={Typography.header3}>Ordrar redo att plockas</Text>
             {listOfOrders}
         </View>
     );
