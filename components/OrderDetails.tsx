@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text } from "react-native";
 import ButtonCustom from "./ButtonCustom";
 import orderModel from "../models/orders";
 import productModel from "../models/products";
 import { Base, Typography } from '../styles';
 
 
-export default function PickList({ route, navigation, setProducts }) {
+export default function OrderDetails({ route, navigation, setProducts }) {
     const { reload } = route.params || false;
     const { order } = route.params;
     const [productsList, setProductsList] = useState([]);
@@ -26,7 +26,7 @@ export default function PickList({ route, navigation, setProducts }) {
     async function pick() {
         await orderModel.pickOrder(order);
         setProducts(await productModel.getProducts());
-        navigation.navigate("List", { reload: true });
+        navigation.navigate("Lista", { reload: true });
     }
 
     const productsHash = productsList.reduce((hash, current) => ({...hash, [current.id]: current.stock}), {});
@@ -55,7 +55,7 @@ export default function PickList({ route, navigation, setProducts }) {
             {orderItemsList}
 
             {allInStock
-                ? <ButtonCustom title="Plocka order" send={true} onPress={pick} />
+                ? <ButtonCustom title="Plocka beställning" send={true} onPress={pick} />
                 : <Text>Ordern går inte att packa, då varor saknas</Text>
             }
 

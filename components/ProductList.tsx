@@ -20,7 +20,7 @@ function StockList({ products, setProducts }) {
     return list;
 }
 
-export default function Stock({ products, setProducts }) {
+export default function ProductList({ products, setProducts }) {
     return (
         <View style={{marginBottom: 20}}>
             <Text style={Typography.header3}>Lagerförteckning</Text>

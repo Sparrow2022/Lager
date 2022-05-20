@@ -29,7 +29,7 @@ export default function OrderList({ route, navigation }) {
                 title={order.name}
                 key={order.id}
                 onPress={() => {
-                    navigation.navigate('Details', {
+                    navigation.navigate('Detaljer', {
                         order: order
                     });
                 }}

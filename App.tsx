@@ -7,8 +7,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { Base, Typography } from './styles';
 import Home from "./components/Home";
-import Pick from "./components/Pick";
-import Deliveries from "./components/Deliveries";
+import OrdersHome from "./components/OrdersHome";
+import DeliveriesHome from "./components/DeliveriesHome";
 
 const Tab = createBottomTabNavigator();
 
@@ -32,11 +32,11 @@ export default function App() {
                     <Tab.Screen name="Lager">
                         {(screenProps) => <Home {...screenProps} products={products} setProducts={setProducts} />}
                     </Tab.Screen>
-                    <Tab.Screen name="Plock">
-                        {(screenProps) => <Pick {...screenProps} products={products} setProducts={setProducts} />}
+                    <Tab.Screen name="Beställningar">
+                        {(screenProps) => <OrdersHome {...screenProps} products={products} setProducts={setProducts} />}
                     </Tab.Screen>
                     <Tab.Screen name="Inleveranser">
-                        {(screenProps) => <Deliveries {...screenProps} />}
+                        {(screenProps) => <DeliveriesHome {...screenProps} />}
                     </Tab.Screen>
                 </Tab.Navigator>
             </NavigationContainer>
@@ -47,7 +47,7 @@ export default function App() {
 
 const routeIcons = {
     "Lager": "home",
-    "Plock": "list",
+    "Beställningar": "list",
     "Inleveranser": "car"
 };
 

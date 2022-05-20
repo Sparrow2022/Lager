@@ -27,7 +27,7 @@ export default function DeliveriesList({route, navigation}) {
                 title={delivery.product_name}
                 key={index}
                 onPress={() => {
-                    navigation.navigate('Details', {
+                    navigation.navigate('Detaljer', {
                         delivery: delivery
                     });
                 }}
@@ -42,7 +42,7 @@ export default function DeliveriesList({route, navigation}) {
                 title="Skapa ny inleverans"
                 send={true}
                 onPress={() => {
-                    navigation.navigate('Form');
+                    navigation.navigate('Formulär');
                 }}
             />
         </View>
