@@ -9,7 +9,7 @@ import { Base, Typography } from './styles';
 import Home from "./components/Home";
 import OrdersHome from "./components/OrdersHome";
 import DeliveriesHome from "./components/DeliveriesHome";
-import Invoices from './components/Invoices';
+import InvoicesHome from './components/InvoicesHome';
 import AuthHome from './components/AuthHome';
 import authModel from "./models/authorisation";
 
@@ -49,7 +49,7 @@ export default function App() {
                     <Tab.Screen name="Inleveranser">
                         {(screenProps) => <DeliveriesHome {...screenProps} />}
                     </Tab.Screen>
-                    {isLoggedIn && <Tab.Screen name="Faktura" component={Invoices} />}
+                    {isLoggedIn && <Tab.Screen name="Faktura" component={InvoicesHome} />}
                     <Tab.Screen name="Användare">
                         {() => <AuthHome isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
                     </Tab.Screen>

@@ -36,7 +36,7 @@ export default function DeliveriesList({route, navigation}) {
 
     return (
         <View style={Base.base}>
-            {listOfDeliveries ? listOfDeliveries : <Text>Det finns inga leveranser att visa</Text>}
+            {listOfDeliveries.length === 0 ? <Text style={Typography.header3}>Det finns inga leveranser att visa</Text> : listOfDeliveries}
             <ButtonCustom
                 title="Skapa ny inleverans"
                 send={true}
