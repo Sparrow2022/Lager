@@ -9,7 +9,7 @@ export default function ShipmentsHome({route, navigation}) {
     return (
         <Stack.Navigator initialRouteName="Leveranser översikt">
             <Stack.Screen name="Leveranser översikt" component={ShipmentsList} />
-            <Stack.Screen name="Detaljer" component={ShipmentDetails} />
+            <Stack.Screen name="Skicka leverans" component={ShipmentDetails} />
         </Stack.Navigator>
     );
 };

@@ -68,8 +68,8 @@ const routeIcons = {
     "Lager": "home",
     "Beställningar": "list",
     "Inleveranser": "car",
-    "Användare": "person-outline",
-    "Faktura": "document-text-outline",
+    "Användare": "person",
+    "Faktura": "document-text",
     "Leveranser": "map",
 };
 
