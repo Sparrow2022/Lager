@@ -27,6 +27,7 @@ export default function InvoicesList({route, navigation}) {
             <Text>{invoice.name}</Text>
             <Text>{invoice.due_date}</Text>
             <Text>{invoice.total_price}</Text>
+            <Text>==========================</Text>
         </View>
         });
 

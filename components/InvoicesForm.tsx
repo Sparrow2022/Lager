@@ -46,6 +46,13 @@ function DateDropDown(props) {
         setShow(true);
     };
 
+    useEffect(() => {
+        props.setInvoice({
+            ...props.invoice,
+            due_date: dropDownDate.toLocaleDateString('se-SV')
+        });
+    }, []);
+
     return (
         <View>
             {Platform.OS === "android" && (
@@ -111,6 +118,7 @@ export default function InvoicesForm({route, navigation}) {
                     title="Skapa faktura"
                     send={true}
                     onPress={() => {
+                        setInvoice({...invoice, creation_date: (new Date()).toLocaleDateString('se-SV')})
                         addInvoice(invoice);
                     }}
                 />

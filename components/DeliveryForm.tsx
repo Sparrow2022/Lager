@@ -44,6 +44,13 @@ function DateDropDown(props) {
         setShow(true);
     };
 
+    useEffect(() => {
+        props.setDelivery({
+            ...props.delivery,
+            delivery_date: dropDownDate.toLocaleDateString('se-SV')
+        });
+    }, []);
+
     return (
         <View>
             {Platform.OS === "android" && (

@@ -26,6 +26,8 @@ const auth = {
 
         await storage.storeToken(result.data.token);
 
+        console.log(await storage.readToken());
+
         return result.data.message;
     },
     register: async function register(email: string, password: string) {
