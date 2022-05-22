@@ -6,11 +6,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { Base, Typography } from './styles';
-import Home from "./components/Home";
+import ProductHome from "./components/ProductHome";
 import OrdersHome from "./components/OrdersHome";
 import DeliveriesHome from "./components/DeliveriesHome";
 import InvoicesHome from './components/InvoicesHome';
 import AuthHome from './components/AuthHome';
+import ShipmentsHome from './components/ShipmentsHome';
 import authModel from "./models/authorisation";
 
 const Tab = createBottomTabNavigator();
@@ -41,7 +42,7 @@ export default function App() {
                 })}
                 >
                     <Tab.Screen name="Lager">
-                        {(screenProps) => <Home {...screenProps} products={products} setProducts={setProducts} />}
+                        {(screenProps) => <ProductHome {...screenProps} products={products} setProducts={setProducts} />}
                     </Tab.Screen>
                     <Tab.Screen name="Beställningar">
                         {(screenProps) => <OrdersHome {...screenProps} products={products} setProducts={setProducts} />}
@@ -52,6 +53,9 @@ export default function App() {
                     {isLoggedIn && <Tab.Screen name="Faktura" component={InvoicesHome} />}
                     <Tab.Screen name="Användare">
                         {() => <AuthHome isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
+                    </Tab.Screen>
+                    <Tab.Screen name="Leveranser">
+                        {(screenProps) => <ShipmentsHome {...screenProps} />}
                     </Tab.Screen>
                 </Tab.Navigator>
             </NavigationContainer>
@@ -66,6 +70,7 @@ const routeIcons = {
     "Inleveranser": "car",
     "Användare": "person-outline",
     "Faktura": "document-text-outline",
+    "Leveranser": "map",
 };
 
 const styles = StyleSheet.create({

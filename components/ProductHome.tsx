@@ -1,4 +1,4 @@
-import { Image, Text, ScrollView } from 'react-native';
+import { Image, ScrollView } from 'react-native';
 import ProductList from './ProductList';
 //@ts-ignore
 import tools from '../assets/tools.jpg'

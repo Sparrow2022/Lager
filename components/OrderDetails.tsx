@@ -26,7 +26,7 @@ export default function OrderDetails({ route, navigation, setProducts }) {
     async function pick() {
         await orderModel.pickOrder(order);
         setProducts(await productModel.getProducts());
-        navigation.navigate("Lista", { reload: true });
+        navigation.navigate("Beställningar redo att plockas", { reload: true });
     }
 
     const productsHash = productsList.reduce((hash, current) => ({...hash, [current.id]: current.stock}), {});

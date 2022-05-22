@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View } from 'react-native';
 import { Base, Typography } from '../styles';
 import ButtonCustom from './ButtonCustom';
 import deliveryModel from "../models/deliveries";
