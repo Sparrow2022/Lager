@@ -1,3 +1,5 @@
+import { CurrentRenderContext } from "@react-navigation/native";
+
 export const container = {
     flex: 1,
 };
@@ -35,7 +37,7 @@ export const buttonSend = {
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
-    marginTop: 5,
-    marginBottom: 5,
+    marginTop: 10,
+    marginBottom: 10,
     backgroundColor: 'green'
 }

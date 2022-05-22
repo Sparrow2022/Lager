@@ -109,11 +109,11 @@ export default function InvoicesForm({route, navigation}) {
                 setCurrentOrder={setCurrentOrder}
                 currentOrder={currentOrder}
             />
-            <Text style={Typography.label}>Datum</Text>
+            <Text style={Typography.label}>Förfallodatum</Text>
             <DateDropDown
                 invoice={invoice}
                 setInvoice={setInvoice}/>
-            <View style={{marginTop: 30}}>
+            <View>
                 <ButtonCustom 
                     title="Skapa faktura"
                     send={true}

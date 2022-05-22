@@ -23,7 +23,7 @@ export default function AuthFields({ auth, setAuth, title, submit, navigation })
                 value={auth?.password}
                 secureTextEntry={true}
             />
-            <View style={{ marginTop: 30 }}>
+            <View>
                 <ButtonCustom
                     title={title}
                     send={true}

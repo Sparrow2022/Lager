@@ -129,7 +129,7 @@ export default function DeliveryForm({route, navigation}) {
                 }}
                 value={delivery?.comment}
             />
-            <View style={{marginTop: 30}}>
+            <View>
                 <ButtonCustom 
                     title="Gör inleverans"
                     send={true}
