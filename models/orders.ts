@@ -31,7 +31,6 @@ const orders = {
 
         await orders.updateOrder(changedOrder);
     },
-
     updateOrder: async function updateOrder(order : Partial<Order>){
         try {
             order.api_key = config.api_key;
@@ -46,6 +45,9 @@ const orders = {
         } catch (error) {
             console.log("could not update the order");
         }
+    },
+    getTotalPrice: function getTotalPrice(order: Order){
+        return order.order_items.map(item => item.amount * item.price).reduce((x, y) => x+y);
     }
 
 };

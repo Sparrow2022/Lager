@@ -24,16 +24,14 @@ export default function InvoicesList({route, navigation}) {
     const listOfInvoices = allInvoices
         .map((invoice, index) => {
         return <View>
-            {invoice.name}
-            {invoice.due_date}
-            {invoice.total_price}
-            {"======================="}
+            <Text>{invoice.name}</Text>
+            <Text>{invoice.due_date}</Text>
+            <Text>{invoice.total_price}</Text>
         </View>
         });
 
     return (
         <View style={Base.base}>
-            {console.log(listOfInvoices)}
             {listOfInvoices.length === 0 ? <Text style={Typography.header3}>Det finns inga fakturor att visa</Text> : listOfInvoices}
             <ButtonCustom
                 title="Skapa ny faktura"

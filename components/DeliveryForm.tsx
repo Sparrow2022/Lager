@@ -90,7 +90,7 @@ export default function DeliveryForm({route, navigation}) {
         }; 
 
         await productModel.updateProduct(changedProduct);
-        navigation.navigate("List", { reload: true });
+        navigation.navigate("Inleveranser översikt", { reload: true });
     }
 
     return (

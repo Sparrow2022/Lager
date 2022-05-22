@@ -16,13 +16,16 @@ const invoices = {
     },
 
     sendInvoice: async function sendInvoice(invoice : Partial<Invoice>) {
+
+        const token = await (await storage.readToken()).token;
         try {
             invoice.api_key = config.api_key;
 
             await fetch(`${config.base_url}/invoices`, {
                 body: JSON.stringify(invoice),
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    'x-access-token': token
                 },
                 method: 'POST'
             });
