@@ -6,13 +6,35 @@ import { Base, Typography } from '../styles';
 import MapView from 'react-native-maps';
 import { Marker } from "react-native-maps";
 import getCoordinates from "../models/nominatim";
+import * as Location from 'expo-location';
 
 
 export default function ShipmentDetails({ route, navigation }) {
     const { order } = route.params;
     const [marker, setMarker] = useState(null);
+    const [locationMarker, setLocationMarker] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null);
 
     useEffect(() => {
+        (async () => {
+            const { status } = await Location.requestForegroundPermissionsAsync();
+
+            if (status !== 'granted') {
+                setErrorMessage('Permission to access location was denied');
+                return;
+            }
+
+            const currentLocation = await Location.getCurrentPositionAsync({});
+
+            setLocationMarker(<Marker
+                coordinate={{
+                    latitude: currentLocation.coords.latitude,
+                    longitude: currentLocation.coords.longitude
+                }}
+                title="Min plats"
+                pinColor="blue"
+            />);
+        })();
         (async () => {
             const results = await getCoordinates(`${order.address}, ${order.city}`);
 
@@ -26,28 +48,27 @@ export default function ShipmentDetails({ route, navigation }) {
 
     async function ship() {
         await orderModel.updateOrder({ ...order, status_id: 400 });
-        navigation.navigate("Leveranser översikt", { reload: true });
+        navigation.navigate("Ordrar redo att skickas", { reload: true });
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={Typography.normal}>{order.name}</Text>
-            <Text style={Typography.normal}>{order.address}</Text>
-            <Text style={Typography.normal}>{order.zip} {order.city}</Text>
-            <MapView
-                style={styles.map}
-                initialRegion={{
-                    latitude: 56.1612,
-                    longitude: 15.5869,
-                    latitudeDelta: 10,
-                    longitudeDelta: 10,
-                }} >
-                {marker}
-                <Marker
-                    coordinate={{ latitude: 56.1612, longitude: 15.5869,}}
-                    title={"Lager"}
-                />
-            </MapView>
+        <View style={[styles.container, Base.base]}>
+            <Text style={Typography.header4}>{order.name}</Text>
+            <Text style={Typography.header4}>{order.address}</Text>
+            <Text style={Typography.header4}>{order.zip} {order.city}</Text>
+            <View style={styles.container}>
+                <MapView
+                    style={styles.map}
+                    initialRegion={{
+                        latitude: 56.1612,
+                        longitude: 15.5869,
+                        latitudeDelta: 10,
+                        longitudeDelta: 10,
+                    }}>
+                    {marker}
+                    {locationMarker}
+                </MapView>
+            </View>
             <ButtonCustom title="Skicka" send={true} onPress={ship} />
         </View>
     )
@@ -55,9 +76,8 @@ export default function ShipmentDetails({ route, navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: "flex-end",
-        alignItems: "center",
+        width: "100%",
+        height: "85%",
     },
     map: {
         ...StyleSheet.absoluteFillObject,

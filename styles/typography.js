@@ -13,6 +13,11 @@ export const header3 = {
     marginBottom: 20,
 };
 
+export const header4 = {
+    fontSize: 20,
+    marginBottom: 10,
+};
+
 export const normal = {
     fontSize: 15,
     marginBottom: 10,
