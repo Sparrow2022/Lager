@@ -34,7 +34,6 @@ export default function ShipmentList({ route, navigation }) {
                     });
                 }}
             />
-
         });
 
     return (

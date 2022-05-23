@@ -26,7 +26,7 @@ const auth = {
 
         await storage.storeToken(result.data.token);
 
-        console.log(await storage.readToken());
+        // console.log(await storage.readToken());
 
         return result.data.message;
     },
