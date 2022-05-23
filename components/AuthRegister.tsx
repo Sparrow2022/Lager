@@ -3,15 +3,13 @@ import { useState } from 'react';
 import AuthModel from '../models/authorisation';
 import AuthFields from './AuthFields';
 
-export default function AuthRegiter({navigation, setIsLoggedIn}) {
+export default function AuthRegiter({navigation}) {
     const [auth, setAuth] = useState<Partial<Auth>>({});
 
     async function register() {
-        console.log("register");
         if (auth.email && auth.password) {
             const result = await AuthModel.register(auth.email, auth.password);
-
-            // setIsLoggedIn(true);
+            navigation.navigate("Logga in");
         }
     }
 
