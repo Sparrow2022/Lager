@@ -2,7 +2,7 @@ import Auth from '../interfaces/auth';
 import { useState } from 'react';
 import AuthModel from '../models/authorisation';
 import AuthFields from './AuthFields';
-import ButtonCustom from './ButtonCustom';
+import { showMessage } from "react-native-flash-message";
 
 export default function AuthLogin({ navigation, setIsLoggedIn }) {
     const [auth, setAuth] = useState<Partial<Auth>>({});
@@ -11,8 +11,22 @@ export default function AuthLogin({ navigation, setIsLoggedIn }) {
         if (auth.email && auth.password) {
             const result = await AuthModel.login(auth.email, auth.password);
 
-            setIsLoggedIn(true);
-            navigation.navigate("Logga ut");
+            showMessage({
+                message: result.title,
+                description: result.message,
+                type: result.type,
+            });
+
+            if (result.type === "success") {
+                setIsLoggedIn(true);
+                setAuth({ ...auth, password: "" })
+                navigation.navigate("Logga ut");
+            }
+        } else {
+            showMessage({
+                message: "E-post eller lösenord saknas",
+                type: "warning",
+            });
         }
     }
 

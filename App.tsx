@@ -13,6 +13,7 @@ import InvoicesHome from './components/InvoicesHome';
 import AuthHome from './components/AuthHome';
 import ShipmentsHome from './components/ShipmentsHome';
 import authModel from "./models/authorisation";
+import FlashMessage from "react-native-flash-message";
 
 const Tab = createBottomTabNavigator();
 
@@ -44,22 +45,23 @@ export default function App() {
                     <Tab.Screen name="Lager">
                         {(screenProps) => <ProductHome {...screenProps} products={products} setProducts={setProducts} />}
                     </Tab.Screen>
+                    <Tab.Screen name="Inleveranser">
+                        {(screenProps) => <DeliveriesHome {...screenProps} />}
+                    </Tab.Screen>
                     <Tab.Screen name="Beställningar">
                         {(screenProps) => <OrdersHome {...screenProps} products={products} setProducts={setProducts} />}
                     </Tab.Screen>
-                    <Tab.Screen name="Inleveranser">
-                        {(screenProps) => <DeliveriesHome {...screenProps} />}
+                    <Tab.Screen name="Leveranser">
+                        {(screenProps) => <ShipmentsHome {...screenProps} />}
                     </Tab.Screen>
                     {isLoggedIn && <Tab.Screen name="Faktura" component={InvoicesHome} />}
                     <Tab.Screen name="Användare">
                         {() => <AuthHome isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
                     </Tab.Screen>
-                    <Tab.Screen name="Leveranser">
-                        {(screenProps) => <ShipmentsHome {...screenProps} />}
-                    </Tab.Screen>
                 </Tab.Navigator>
             </NavigationContainer>
             <StatusBar style="auto" />
+            <FlashMessage position="bottom" />
         </SafeAreaView>
     );
 }
