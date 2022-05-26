@@ -20,8 +20,15 @@ const deliveries = {
                 },
                 method: 'POST'
             });
+            return {
+                title: "Inleveransen har skapats",
+                type: "success",
+            };
         } catch (error) {
-            console.log("could not send the delivery");
+            return {
+                title: "Inleveransen kunde inte skapas",
+                type: "danger",
+            };
         }
     }
 }

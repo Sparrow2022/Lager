@@ -8,6 +8,7 @@ import Delivery from "../interfaces/delivery";
 import Product from "../interfaces/product";
 import productModel from "../models/products";
 import deliveryModel from "../models/deliveries"
+import { showMessage } from "react-native-flash-message";
 
 function ProductDropDown(props) {
     const [products, setProducts] = useState<Product[]>([]);
@@ -87,17 +88,34 @@ export default function DeliveryForm({route, navigation}) {
     const [currentProduct, setCurrentProduct] = useState<Partial<Product>>({});
 
     async function addDelivery(delivery : Partial<Delivery>) {
-        await deliveryModel.sendDelivery(delivery);
 
-        let productToChange = await (await productModel.getProducts()).find(p => p.id === delivery.product_id);
+        if (delivery.product_id && delivery.delivery_date && delivery.amount) {
+            let result = await deliveryModel.sendDelivery(delivery);
 
-        let changedProduct = {
-            id: delivery.product_id, 
-            stock: productToChange.stock + delivery.amount,
-        }; 
+            showMessage({
+            message: result.title,
+            type: result.type
+            });
 
-        await productModel.updateProduct(changedProduct);
-        navigation.navigate("Inleveranser översikt", { reload: true });
+            if (result.type === "success") {
+            
+                let productToChange = await (await productModel.getProducts()).find(p => p.id === delivery.product_id);
+                
+                let changedProduct = {
+                    id: delivery.product_id, 
+                    stock: productToChange.stock + delivery.amount,
+                }; 
+                
+                await productModel.updateProduct(changedProduct);
+                navigation.navigate("Inleveranser översikt", { reload: true });
+            }
+        } else {
+            showMessage({
+                message: "Produkt, datum eller antal saknas",
+                type: "warning",
+            });
+        }
+
     }
 
     return (
