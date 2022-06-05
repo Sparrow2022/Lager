@@ -103,6 +103,7 @@ export default function DeliveryForm({route, navigation}) {
                 
                 let changedProduct = {
                     id: delivery.product_id, 
+                    name: delivery.product_name,
                     stock: productToChange.stock + delivery.amount,
                 }; 
                 
