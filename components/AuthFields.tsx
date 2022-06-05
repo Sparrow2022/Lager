@@ -27,17 +27,19 @@ export default function AuthFields({ auth, setAuth, title, submit, navigation })
                 testID="password-field"
             />
             <View>
-                <ButtonCustom
+                <Button
                     title={title}
-                    send={true}
+                    //send={true}
+                    accessibilityLabel={`${title} genom att trycka`}
                     onPress={() => {
                         submit();
                     }}
                 />
                 {title === "Logga in" &&
-                    <ButtonCustom
+                    <Button
                         title="Registrera istället"
-                        send={false}
+                        //send={false}
+                        accessibilityLabel={`Registrera genom att trycka`}
                         onPress={() => {
                             navigation.navigate("Registrera");
                         }}
