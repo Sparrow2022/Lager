@@ -3,7 +3,7 @@ import { Text, View, FlatList } from 'react-native';
 import productModel from "../models/products";
 import { Base, Typography } from '../styles';
 
-function StockList({ products, setProducts }) {
+export default function ProductList({ products, setProducts }) {
     useEffect(async () => {
         setProducts(await productModel.getProducts());
     }, []);
@@ -18,13 +18,4 @@ function StockList({ products, setProducts }) {
     });
 
     return list;
-}
-
-export default function ProductList({ products, setProducts }) {
-    return (
-        <View style={{marginBottom: 20}}>
-            <Text style={Typography.header3}>Lagerförteckning</Text>
-            <StockList products={products} setProducts={setProducts} />
-        </View>
-    )
 }
