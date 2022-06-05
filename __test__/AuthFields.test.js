@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react-native';
+import { render, fireEvent } from '@testing-library/react-native';
 import AuthFields from '../components/AuthFields';
 
 // USE CASE:
@@ -34,4 +34,8 @@ test('testing authFields for login', async () => {
     // const a11yLabel = `${title} genom att trycka`
     // const submitButton = await getByA11yLabel(a11yLabel);
     // expect(submitButton).toBeDefined();
+
+    const fakeEmail = "fake@fake.se";
+    fireEvent.changeText(emailField, fakeEmail);
+    expect(auth?.email).toEqual(fakeEmail);
 });
