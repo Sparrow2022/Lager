@@ -2,12 +2,13 @@ import { render, fireEvent } from '@testing-library/react-native';
 import DeliveryForm from '../components/DeliveryForm';
 
 // USE CASE:
-// I Skapa Ny Leverans ska det finnas 4 fält och en knapp
+// I Skapa Ny Leverans ska det finnas 4 fält
 
 jest.mock("../components/ProductDropDown", () => "ProductDropDown");
+jest.mock("../components/DateDropDown", () => "DateDropDown");
 
 test('testing delivery form', async () => {
-    const { getAllByText, getByTestId, getByA11yLabel } = render(<DeliveryForm
+    const { getByTestId } = render(<DeliveryForm
         route={{reload: true}}
         navigation={() => false}
     />);
@@ -15,12 +16,12 @@ test('testing delivery form', async () => {
     const productDropDown = await getByTestId("product drop down");
     expect(productDropDown).toBeDefined();
 
+    const deliveryDate = await getByTestId("delivery date");
+    expect(deliveryDate).toBeDefined();
 
-    // const fakeEmail = "fake@fake.se";
-    // fireEvent.changeText(emailField, fakeEmail);
-    // expect(auth?.email).toEqual(fakeEmail);
+    const amount = await getByTestId("product amount");
+    expect(amount).toBeDefined();
 
-    // //doesn't work with custom pressable!
-    // fireEvent.press(submitButton);
-    // expect(mockSubmit).toHaveBeenCalled();
+    const comment = await getByTestId("comment");
+    expect(comment).toBeDefined();
 });

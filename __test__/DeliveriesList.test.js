@@ -5,12 +5,12 @@ jest.mock("../components/ButtonCustom", () => "ButtonCustom");
 
 // USE CASE:
 // I Inleveranser ska det finnas ett meddelande att det inte finns några leveranser
-// och en knapp för att skapa en ny leverans
+// och en fungerande knapp för att skapa en ny leverans
 
 const mockSubmit = jest.fn();
 
 test('a message about no deliveries and a new-delivery button should exist', async () => {
-    const { getByText, getByTestId, getByA11yLabel } = render(
+    const { getByText, getByA11yLabel } = render(
         <DeliveriesList 
         route={{reload: true}} 
         navigation={{navigate: mockSubmit}}

@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
-import { Platform, View, ScrollView, Text, TextInput, Button} from "react-native";
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { useState } from "react";
+import { View, ScrollView, Text, TextInput } from "react-native";
 import ProductDropDown from "./ProductDropDown";
 import { Base, Typography, Forms } from '../styles';
 import ButtonCustom from "./ButtonCustom";
@@ -9,51 +8,7 @@ import Product from "../interfaces/product";
 import productModel from "../models/products";
 import deliveryModel from "../models/deliveries"
 import { showMessage } from "react-native-flash-message";
-
-function DateDropDown(props) {
-    const [dropDownDate, setDropDownDate] = useState<Date>(new Date());
-    const [show, setShow] = useState<Boolean>(false);
-
-    const showDatePicker = () => {
-        setShow(true);
-    };
-
-    useEffect(() => {
-        props.setDelivery({
-            ...props.delivery,
-            delivery_date: dropDownDate.toLocaleDateString('se-SV')
-        });
-    }, []);
-
-    return (
-        <View>
-            {Platform.OS === "android" && (
-                <ButtonCustom
-                    onPress={showDatePicker}
-                    title={dropDownDate.toLocaleDateString('se-SV')}
-                    send={false}
-                />
-            )}
-            {(show || Platform.OS === "ios") && (
-                <DateTimePicker
-                    onChange={(event, date) => {
-                        if (date !== undefined) {
-                            
-                            setDropDownDate(date);
-                            
-                            props.setDelivery({
-                                ...props.delivery,
-                                delivery_date: date.toLocaleDateString('se-SV')
-                            });
-                        }
-                        setShow(false);
-                    }}
-                    value={dropDownDate}
-                />
-            )}
-        </View>
-    );
-}
+import DateDropDown from "./DateDropDown";
 
 export default function DeliveryForm({route, navigation}) {
 
@@ -104,7 +59,9 @@ export default function DeliveryForm({route, navigation}) {
             <Text style={Typography.label}>Datum</Text>
             <DateDropDown
                 delivery={delivery}
-                setDelivery={setDelivery}/>
+                setDelivery={setDelivery}
+                testID="delivery date"
+            />
             <Text style={Typography.label}>Antal</Text>
             <TextInput
                 style={Forms.input}
@@ -113,6 +70,7 @@ export default function DeliveryForm({route, navigation}) {
                 }}
                 value={delivery?.amount?.toString() === "NaN" ? "" : delivery?.amount?.toString()}
                 keyboardType="numeric"
+                testID="product amount"
             />
             <Text style={Typography.label}>Kommentar</Text>
             <TextInput
@@ -121,6 +79,7 @@ export default function DeliveryForm({route, navigation}) {
                 setDelivery({...delivery, comment: content})
                 }}
                 value={delivery?.comment}
+                testID="comment"
             />
             <View>
                 <ButtonCustom 
