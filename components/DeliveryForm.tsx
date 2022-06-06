@@ -1,7 +1,7 @@
-    import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Platform, View, ScrollView, Text, TextInput, Button} from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Picker } from '@react-native-picker/picker';
+import ProductDropDown from "./ProductDropDown";
 import { Base, Typography, Forms } from '../styles';
 import ButtonCustom from "./ButtonCustom";
 import Delivery from "../interfaces/delivery";
@@ -9,33 +9,6 @@ import Product from "../interfaces/product";
 import productModel from "../models/products";
 import deliveryModel from "../models/deliveries"
 import { showMessage } from "react-native-flash-message";
-
-function ProductDropDown(props) {
-    const [products, setProducts] = useState<Product[]>([]);
-    let productsHash: any = {};
-
-    useEffect(() => {
-        (async () => {
-            setProducts(await productModel.getProducts());
-        })();
-    }, []);
-
-    const itemsList = products.map((prod, index) => {
-        productsHash[prod.id] = prod;
-        return <Picker.Item key={index} label={prod.name} value={prod.id} />;
-    });
-
-    return (
-        <Picker
-            selectedValue={props.delivery?.product_id || "Välj en produkt"}
-            onValueChange={(itemValue) => {
-                props.setDelivery({ ...props.delivery, product_id: itemValue });
-                props.setCurrentProduct(productsHash[itemValue]);
-            }}>
-            {itemsList}
-        </Picker>
-    );
-}
 
 function DateDropDown(props) {
     const [dropDownDate, setDropDownDate] = useState<Date>(new Date());
@@ -126,6 +99,7 @@ export default function DeliveryForm({route, navigation}) {
                 delivery={delivery}
                 setDelivery={setDelivery}
                 setCurrentProduct={setCurrentProduct}
+                testID="product drop down"
             />
             <Text style={Typography.label}>Datum</Text>
             <DateDropDown

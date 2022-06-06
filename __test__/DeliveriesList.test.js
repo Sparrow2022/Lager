@@ -10,14 +10,20 @@ jest.mock("../components/ButtonCustom", () => "ButtonCustom");
 const mockSubmit = jest.fn();
 
 test('a message about no deliveries and a new-delivery button should exist', async () => {
-    const { getByText } = render(<DeliveriesList route={{reload: true}} navigation={{navigate: mockSubmit}}/>);
+    const { getByText, getByTestId, getByA11yLabel } = render(
+        <DeliveriesList 
+        route={{reload: true}} 
+        navigation={{navigate: mockSubmit}}
+        />);
 
     const message = await getByText("Det finns inga leveranser att visa");
-    const button = await getByText("Skapa ny inleverans");
+
+    const a11yLabel = "Skapa ny inleverans genom att trycka";
+    const submitButton = await getByA11yLabel(a11yLabel);
 
     expect(message).toBeDefined();
-    expect(button).toBeDefined();
+    expect(submitButton).toBeDefined();
 
-    fireEvent.press(button);
+    fireEvent.press(submitButton);
     expect(mockSubmit).toHaveBeenCalled();
 });

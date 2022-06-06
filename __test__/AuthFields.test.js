@@ -2,7 +2,9 @@ import { render, fireEvent } from '@testing-library/react-native';
 import AuthFields from '../components/AuthFields';
 
 // USE CASE:
-// I Logga In vy ska det finnas en rubrik, ett email-fält och ett lösenord fält
+// I Logga In vy ska det finnas ett email-fält och ett lösenord fält, samt en fungerande knapp
+
+jest.mock("../components/ButtonCustom", () => "ButtonCustom");
 
 let title = "Logga in";
 let auth = {}
@@ -21,16 +23,12 @@ test('testing authFields for login', async () => {
         navigation={navigation}
     />);
 
-    const titleElement = await getAllByText(title);
-    expect(titleElement).toBeDefined();
-
     const emailField = await getByTestId("email-field");
     expect(emailField).toBeDefined();
 
     const passwordField = await getByTestId("password-field");
     expect(passwordField).toBeDefined();
 
-    //the test works with "Button" but not with my custom "Pressable" ("ButtonCustom")
     const a11yLabel = `${title} genom att trycka`
     const submitButton = await getByA11yLabel(a11yLabel);
     expect(submitButton).toBeDefined();
@@ -43,7 +41,6 @@ test('testing authFields for login', async () => {
     fireEvent.changeText(passwordField, fakePassword);
     expect(auth?.password).toEqual(fakePassword);
 
-    //doesn't work with custom pressable!
     fireEvent.press(submitButton);
     expect(mockSubmit).toHaveBeenCalled();
 });

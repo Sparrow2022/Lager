@@ -26,6 +26,7 @@ export default function DeliveriesList({route, navigation}) {
             return <ButtonCustom
                 title={delivery.product_name}
                 key={index}
+                accessibilityLabel={`Navigera till detaljer genom att trycka`}
                 onPress={() => {
                     navigation.navigate('Detaljer', {
                         delivery: delivery
@@ -37,9 +38,10 @@ export default function DeliveriesList({route, navigation}) {
     return (
         <View style={Base.base}>
             {listOfDeliveries.length === 0 ? <Text style={Typography.header3}>Det finns inga leveranser att visa</Text> : listOfDeliveries}
-            <Button
+            <ButtonCustom
                 title="Skapa ny inleverans"
-                //send={true}
+                send={true}
+                accessibilityLabel={`Skapa ny inleverans genom att trycka`}
                 onPress={() => {
                     navigation.navigate('Skapa ny leverans');
                 }}
