@@ -38,4 +38,12 @@ test('testing authFields for login', async () => {
     const fakeEmail = "fake@fake.se";
     fireEvent.changeText(emailField, fakeEmail);
     expect(auth?.email).toEqual(fakeEmail);
+
+    const fakePassword = "Fake123";
+    fireEvent.changeText(passwordField, fakePassword);
+    expect(auth?.password).toEqual(fakePassword);
+
+    // doesn't work with custom pressable!
+    // fireEvent.press(submitButton);
+    // expect(mockSubmit).toHaveBeenCalled();
 });
