@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Button } from 'react-native';
 import { Base, Typography } from '../styles';
 import ButtonCustom from './ButtonCustom';
 import deliveryModel from "../models/deliveries";
@@ -37,9 +37,9 @@ export default function DeliveriesList({route, navigation}) {
     return (
         <View style={Base.base}>
             {listOfDeliveries.length === 0 ? <Text style={Typography.header3}>Det finns inga leveranser att visa</Text> : listOfDeliveries}
-            <ButtonCustom
+            <Button
                 title="Skapa ny inleverans"
-                send={true}
+                //send={true}
                 onPress={() => {
                     navigation.navigate('Skapa ny leverans');
                 }}

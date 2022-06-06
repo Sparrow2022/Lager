@@ -3,7 +3,6 @@ import ProductList from '../components/ProductList';
 
 // USE CASE: 
 // I Lagerförteckningen ska det finnas en lista med produkter. 
-// Listan ska innehålla produktens namn och lagersaldo.
 
 const products = [
     { name: "Shampoo", stock: 2 },
